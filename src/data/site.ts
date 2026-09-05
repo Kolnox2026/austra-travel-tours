@@ -1,0 +1,46 @@
+// Central site configuration. Replace every "[X]" placeholder with real
+// business data before launch — see PLACEHOLDERS.md for the full checklist.
+
+export const site = {
+  name: 'AUSTRA TRAVEL & TOURS',
+  shortName: 'Austra',
+  tagline: 'Connecting People to the World, Beyond Borders.',
+  mission:
+    'We connect people to the world through verified opportunities, seamless travel solutions, and professional international mobility services—helping our clients work, study, travel, and grow beyond borders.',
+  vision: "To become Africa's most trusted gateway to global mobility and opportunity.",
+  description:
+    'AUSTRA TRAVEL & TOURS is a Ghana-based international mobility and travel company connecting Ghanaians and residents of Ghana to verified travel, education, and visa opportunities.',
+  url: 'https://www.austratravelandtours.com',
+
+  // --- Placeholder contact details — replace before launch ---
+  contact: {
+    phoneDisplay: '+233 [XX] [XXX] [XXXX]',
+    phoneHref: 'tel:+233000000000',
+    whatsappDisplay: '+233 [XX] [XXX] [XXXX]',
+    whatsappNumber: '233000000000', // digits only, no +, for wa.me links
+    email: 'info@austratravelandtours.com',
+    address: {
+      line1: '[Street Address / Building Name]',
+      line2: 'Kasoa, Central Region, Ghana',
+    },
+    hours: [
+      { days: 'Monday – Friday', time: '8:00 AM – 6:00 PM' },
+      { days: 'Saturday', time: '9:00 AM – 3:00 PM' },
+      { days: 'Sunday', time: 'Closed' },
+    ],
+  },
+
+  social: {
+    facebook: '#',
+    instagram: '#',
+    linkedin: '#',
+    tiktok: '#',
+  },
+} as const;
+
+export function whatsappLink(message: string): string {
+  return `https://wa.me/${site.contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+export const defaultWhatsappMessage =
+  "Hello AUSTRA TRAVEL & TOURS, I'd like to enquire about your services.";

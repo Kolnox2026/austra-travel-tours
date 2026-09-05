@@ -1,0 +1,33 @@
+---
+import Icon from './Icon.astro';
+import type { Service } from '../data/services';
+
+export interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const href = `/${service.slug}/`;
+---
+
+<a
+  href={href}
+  class="card group relative flex flex-col p-7 transition-transform hover:-translate-y-1 hover:shadow-card-hover"
+>
+  {
+    service.comingSoon && (
+      <span class="absolute right-5 top-5 rounded-full bg-gold-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-gold-700">
+        Coming Soon
+      </span>
+    )
+  }
+  <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-800 text-gold-400">
+    <Icon name={service.icon} class="h-6 w-6" />
+  </div>
+  <h3 class="mt-5 text-lg font-bold text-navy-900">{service.name}</h3>
+  <p class="mt-2 flex-1 text-sm leading-relaxed text-navy-600">{service.tagline}</p>
+  <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-gold-600 group-hover:gap-2">
+    Learn more
+    <Icon name="chevron-right" class="h-4 w-4 transition-all" />
+  </span>
+</a>

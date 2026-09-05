@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ValueCard from '../components/ValueCard.astro';
+import CTASection from '../components/CTASection.astro';
+import TrustBar from '../components/TrustBar.astro';
+import { site, defaultWhatsappMessage } from '../data/site';
+import { coreValues } from '../data/values';
+---
+
+<BaseLayout
+  title="About Us"
+  description="About AUSTRA TRAVEL & TOURS — a Ghana-based international mobility company connecting clients to verified travel, education, and visa opportunities."
+  path="/about/"
+>
+  <PageHero
+    eyebrow="About Us"
+    title="Built to close the trust gap in international mobility"
+    subtitle="AUSTRA TRAVEL & TOURS is a Ghana-based international mobility and travel company, based in Kasoa, serving Ghanaians and residents of Ghana who want to travel, study, or work abroad through legitimate, checked channels."
+  />
+
+  <section class="section">
+    <div class="container-content grid gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-2xl font-bold text-navy-900">Our Mission</h2>
+        <p class="mt-4 text-base leading-relaxed text-navy-600">{site.mission}</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold text-navy-900">Our Vision</h2>
+        <p class="mt-4 text-base leading-relaxed text-navy-600">{site.vision}</p>
+      </div>
+    </div>
+  </section>
+
+  <TrustBar />
+
+  <section class="section bg-navy-50">
+    <div class="container-content">
+      <SectionHeading eyebrow="What drives us" title="Our Core Values" />
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {coreValues.map((value, i) => <ValueCard name={value.name} description={value.description} index={i + 1} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-content max-w-3xl">
+      <SectionHeading eyebrow="Why we started" title="Why the verification framework exists" align="left" />
+      <div class="mt-8 space-y-4 text-base leading-relaxed text-navy-600">
+        <p>
+          We built AUSTRA TRAVEL & TOURS around a simple observation: in this market, the people offering travel,
+          study, and work opportunities are rarely checked before they reach the person relying on them. We decided
+          our own agency would not operate that way.
+        </p>
+        <p>
+          Every employer, school, or supplier we work with is checked against our
+          <a href="/our-promise/" class="font-semibold text-gold-600 underline underline-offset-2">
+            Employer & Partner Verification Framework
+          </a>
+          before it is ever presented to a client — and carries a public status so you can see exactly where that
+          check stands.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Want to know more about how we work?"
+    message={defaultWhatsappMessage}
+  />
+</BaseLayout>

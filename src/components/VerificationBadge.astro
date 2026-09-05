@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import { verificationStatusMeta, type VerificationStatus } from '../data/verification';
+
+export interface Props {
+  status: VerificationStatus;
+  size?: 'sm' | 'md';
+}
+
+const { status, size = 'md' } = Astro.props;
+const meta = verificationStatusMeta[status];
+
+const styles: Record<VerificationStatus, string> = {
+  verified: 'bg-verified/10 text-verified ring-verified/30',
+  'under-review': 'bg-review/10 text-review ring-review/30',
+  rejected: 'bg-rejected/10 text-rejected ring-rejected/30',
+};
+
+const icons: Record<VerificationStatus, 'check-circle' | 'clock' | 'x-circle'> = {
+  verified: 'check-circle',
+  'under-review': 'clock',
+  rejected: 'x-circle',
+};
+
+const sizeClass = size === 'sm' ? 'text-xs px-2.5 py-1 gap-1' : 'text-sm px-3.5 py-1.5 gap-1.5';
+const iconSize = size === 'sm' ? 'h-3.5 w-3.5' : 'h-4 w-4';
+---
+
+<span
+  class:list={[
+    'inline-flex items-center rounded-full font-bold uppercase tracking-wide ring-1',
+    styles[status],
+    sizeClass,
+  ]}
+  title={meta.description}
+>
+  <Icon name={icons[status]} class={iconSize} />
+  {meta.label}
+</span>

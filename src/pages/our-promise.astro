@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PromiseCard from '../components/PromiseCard.astro';
+import VerificationFramework from '../components/VerificationFramework.astro';
+import CTASection from '../components/CTASection.astro';
+import { ourPromise } from '../data/promise';
+import { defaultWhatsappMessage } from '../data/site';
+---
+
+<BaseLayout
+  title="Our Promise & Trust"
+  description="AUSTRA TRAVEL & TOURS' published commitments and Employer & Partner Verification Framework — how we build trust with every client."
+  path="/our-promise/"
+>
+  <PageHero
+    eyebrow="Trust & Compliance"
+    title="Our Promise"
+    subtitle="These are not marketing lines — they are the standards we hold ourselves to on every single engagement, published so you can hold us to them too."
+  />
+
+  <section class="section">
+    <div class="container-content">
+      <SectionHeading eyebrow="Published Commitments" title="What we will always do" align="left" />
+      <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        {ourPromise.map((item) => <PromiseCard title={item.title} description={item.description} />)}
+      </div>
+    </div>
+  </section>
+
+  <VerificationFramework />
+
+  <section class="section">
+    <div class="container-content max-w-3xl">
+      <SectionHeading eyebrow="Why this matters" title="Why we publish status at all" />
+      <div class="mt-8 space-y-4 text-base leading-relaxed text-navy-600">
+        <p>
+          Ghana's international mobility market has real, well-documented problems with fraudulent job offers, fake
+          admission letters, and agents who imply they can influence a visa decision. Our position is that clients
+          deserve to see our checking process, not just be told to trust it.
+        </p>
+        <p>
+          That is why every employer, school, or supplier we promote carries one of three public statuses —
+          <strong class="text-navy-900">Verified</strong>, <strong class="text-navy-900">Under Review</strong>, or
+          <strong class="text-navy-900">Rejected</strong> — and why a status can change if new information comes to
+          light. Verification is a process we repeat, not a badge we hand out once.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Have a partner or opportunity you want checked?"
+    subtitle="Send us the details on WhatsApp and we'll run it through our verification framework."
+    message={defaultWhatsappMessage}
+  />
+</BaseLayout>

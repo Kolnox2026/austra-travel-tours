@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { defaultWhatsappMessage } from '../data/site';
+---
+
+<BaseLayout title="Page Not Found" description="This page could not be found." path="/404/">
+  <section class="section">
+    <div class="container-content flex flex-col items-center py-16 text-center">
+      <p class="font-display text-6xl font-bold text-gold-500">404</p>
+      <h1 class="mt-4 text-2xl font-bold text-navy-900">We couldn't find that page</h1>
+      <p class="mt-3 max-w-md text-navy-600">
+        The page you're looking for may have moved. Try the homepage, or reach us directly on WhatsApp.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/" class="btn-primary">Back to Home</a>
+        <WhatsAppButton message={defaultWhatsappMessage} label="WhatsApp Us" variant="outline" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

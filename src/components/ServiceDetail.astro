@@ -1,0 +1,63 @@
+---
+import PageHero from './PageHero.astro';
+import Icon from './Icon.astro';
+import CTASection from './CTASection.astro';
+import type { Service } from '../data/services';
+import { site, whatsappLink } from '../data/site';
+
+export interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const message = `Hello ${site.name}, I'd like to enquire about ${service.name}.`;
+---
+
+<PageHero eyebrow="Service" title={service.name} subtitle={service.tagline} />
+
+<section class="section">
+  <div class="container-content grid gap-12 lg:grid-cols-[1.3fr_1fr]">
+    <div>
+      <h2 class="text-2xl font-bold text-navy-900">Overview</h2>
+      <p class="mt-4 text-base leading-relaxed text-navy-600">{service.summary}</p>
+
+      <h3 class="mt-10 text-lg font-bold text-navy-900">What's included</h3>
+      <ul class="mt-4 space-y-3">
+        {
+          service.features.map((feature) => (
+            <li class="flex items-start gap-3">
+              <Icon name="check-circle" class="mt-0.5 h-5 w-5 flex-shrink-0 text-verified" />
+              <span class="text-sm leading-relaxed text-navy-700 sm:text-base">{feature}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <slot />
+    </div>
+
+    <aside class="h-fit rounded-2xl bg-navy-800 p-7 text-white">
+      <Icon name="badge" class="h-8 w-8 text-gold-400" />
+      <h3 class="mt-4 text-lg font-bold">Verified before we recommend it</h3>
+      <p class="mt-2 text-sm leading-relaxed text-navy-100">
+        Any institution, supplier, or partner involved in this service has been checked against our
+        <a href="/our-promise/" class="font-semibold text-gold-400 underline underline-offset-2">verification framework</a>
+        and carries a public status before we present it to you.
+      </p>
+      <a
+        href={whatsappLink(message)}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-gold-400 hover:text-gold-300"
+      >
+        Ask a question on WhatsApp
+        <Icon name="chevron-right" class="h-4 w-4" />
+      </a>
+    </aside>
+  </div>
+</section>
+
+<CTASection
+  title={`Get started with ${service.shortName}`}
+  message={message}
+/>

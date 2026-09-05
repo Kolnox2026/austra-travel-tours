@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceDetail from '../components/ServiceDetail.astro';
+import { services } from '../data/services';
+
+const service = services.find((s) => s.slug === 'study-abroad')!;
+---
+
+<BaseLayout title={service.name} description={service.metaDescription} path="/study-abroad/">
+  <ServiceDetail service={service}>
+    <div class="mt-10 rounded-xl bg-navy-50 p-5">
+      <p class="text-sm leading-relaxed text-navy-700">
+        <strong class="text-navy-900">Note:</strong> we guide and prepare your application — admission and scholarship
+        decisions are made solely by the institution or funding body, never by us.
+      </p>
+    </div>
+  </ServiceDetail>
+</BaseLayout>

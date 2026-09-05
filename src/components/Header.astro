@@ -1,0 +1,112 @@
+---
+import Icon from './Icon.astro';
+import WhatsAppButton from './WhatsAppButton.astro';
+import { primaryNav } from '../data/nav';
+import { site } from '../data/site';
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="sticky top-0 z-30 border-b border-navy-100 bg-cream/95 backdrop-blur">
+  <div class="container-content flex h-20 items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      <img src="/favicon.svg" alt="" class="h-9 w-9" />
+      <span class="font-display text-lg font-bold leading-tight text-navy-800 sm:text-xl">
+        AUSTRA <span class="text-gold-600">TRAVEL &amp; TOURS</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-1 xl:flex" aria-label="Primary">
+      {
+        primaryNav.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'relative rounded-full px-3 py-2 text-sm font-medium transition-colors',
+              isActive(link.href)
+                ? 'text-navy-900 font-semibold'
+                : 'text-navy-600 hover:text-navy-900',
+            ]}
+          >
+            {link.label}
+            {link.badge && (
+              <span class="ml-1 rounded-full bg-gold-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gold-700">
+                {link.badge}
+              </span>
+            )}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden lg:flex xl:flex">
+      <WhatsAppButton
+        message={`Hello ${site.name}, I'd like to enquire about your services.`}
+        label="WhatsApp Us"
+        variant="primary"
+        class="!px-5 !py-2.5 text-xs"
+      />
+    </div>
+
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="flex h-11 w-11 items-center justify-center rounded-full text-navy-700 xl:hidden"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <Icon name="menu" class="h-7 w-7" />
+    </button>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    class="hidden flex-col gap-1 border-t border-navy-100 bg-cream px-5 py-4 xl:hidden"
+    aria-label="Mobile"
+  >
+    {
+      primaryNav.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium',
+            isActive(link.href) ? 'bg-navy-50 text-navy-900 font-semibold' : 'text-navy-700',
+          ]}
+        >
+          <span>{link.label}</span>
+          {link.badge && (
+            <span class="rounded-full bg-gold-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gold-700">
+              {link.badge}
+            </span>
+          )}
+        </a>
+      ))
+    }
+    <div class="mt-2">
+      <WhatsAppButton
+        message={`Hello ${site.name}, I'd like to enquire about your services.`}
+        label="WhatsApp Us"
+        variant="primary"
+        class="w-full"
+      />
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isHidden = menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    menu?.classList.toggle('flex');
+    toggle.setAttribute('aria-expanded', String(Boolean(isHidden)));
+  });
+</script>

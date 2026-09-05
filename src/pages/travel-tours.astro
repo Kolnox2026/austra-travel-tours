@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceDetail from '../components/ServiceDetail.astro';
+import { services } from '../data/services';
+
+const service = services.find((s) => s.slug === 'travel-tours')!;
+---
+
+<BaseLayout title={service.name} description={service.metaDescription} path="/travel-tours/">
+  <ServiceDetail service={service} />
+</BaseLayout>

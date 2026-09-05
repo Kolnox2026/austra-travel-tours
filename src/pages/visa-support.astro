@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceDetail from '../components/ServiceDetail.astro';
+import Icon from '../components/Icon.astro';
+import { services } from '../data/services';
+
+const service = services.find((s) => s.slug === 'visa-support')!;
+---
+
+<BaseLayout title={service.name} description={service.metaDescription} path="/visa-support/">
+  <ServiceDetail service={service}>
+    <div class="mt-10 flex gap-3 rounded-xl border border-gold-200 bg-gold-50 p-5">
+      <Icon name="shield" class="mt-0.5 h-5 w-5 flex-shrink-0 text-gold-600" />
+      <p class="text-sm leading-relaxed text-navy-700">
+        <strong class="text-navy-900">Important:</strong> visa and immigration decisions are made exclusively by the
+        relevant embassy, consulate, or immigration authority. We provide administrative and documentation support
+        only, and we do not — and will never — guarantee a visa outcome or claim any influence over that decision.
+      </p>
+    </div>
+  </ServiceDetail>
+</BaseLayout>

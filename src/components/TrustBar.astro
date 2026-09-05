@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+
+<section class="border-y border-navy-100 bg-white">
+  <div class="container-content grid gap-6 py-8 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="flex items-start gap-3">
+      <Icon name="map-pin" class="mt-0.5 h-5 w-5 flex-shrink-0 text-gold-600" />
+      <div>
+        <p class="text-xs font-bold uppercase tracking-wide text-navy-400">Visit Us</p>
+        <p class="mt-0.5 text-sm text-navy-700">{site.contact.address.line1}, {site.contact.address.line2}</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3">
+      <Icon name="phone" class="mt-0.5 h-5 w-5 flex-shrink-0 text-gold-600" />
+      <div>
+        <p class="text-xs font-bold uppercase tracking-wide text-navy-400">Call or WhatsApp</p>
+        <p class="mt-0.5 text-sm text-navy-700">{site.contact.phoneDisplay}</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3">
+      <Icon name="clock" class="mt-0.5 h-5 w-5 flex-shrink-0 text-gold-600" />
+      <div>
+        <p class="text-xs font-bold uppercase tracking-wide text-navy-400">Office Hours</p>
+        <p class="mt-0.5 text-sm text-navy-700">{site.contact.hours[0].days}, {site.contact.hours[0].time}</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3">
+      <Icon name="badge" class="mt-0.5 h-5 w-5 flex-shrink-0 text-gold-600" />
+      <div>
+        <p class="text-xs font-bold uppercase tracking-wide text-navy-400">Our Standard</p>
+        <p class="mt-0.5 text-sm text-navy-700">Every partner verified before referral</p>
+      </div>
+    </div>
+  </div>
+</section>
