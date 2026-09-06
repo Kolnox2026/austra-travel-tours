@@ -5,28 +5,28 @@ export type PromiseItem = {
 
 export const ourPromise: PromiseItem[] = [
   {
-    title: 'We never guarantee a visa outcome',
+    title: 'Expert preparation, every time',
     description:
-      'No agency can guarantee a visa decision — that decision belongs to the embassy or consulate alone. Anyone who tells you otherwise is misleading you.',
+      'We prepare every application to the highest standard — the right documents, the right format, presented the right way — so you go in with the strongest possible case. The embassy makes the final call; we make sure your case is the best it can be.',
   },
   {
-    title: 'We always show verification status',
+    title: 'Verified partners, always',
     description:
-      'Every employer, school, or supplier we present carries a public status — Verified, Under Review, or Rejected — before you ever engage with them.',
+      'Every employer, school, or supplier we present carries a public status — Verified, Under Review, or Rejected — so you always know exactly who you\'re dealing with before you commit.',
   },
   {
-    title: 'All fees are disclosed in writing, upfront',
+    title: 'Clear pricing, no surprises',
     description:
-      'You will see the full cost of our service before you pay anything. No hidden charges, no "processing fees" added after the fact.',
+      'You will see the full cost of our service before you pay anything. What we quote is what you pay — no hidden charges, no surprise "processing fees" added later.',
   },
   {
-    title: 'We never claim embassy or consulate influence',
+    title: 'Honest advice, straight talk',
     description:
-      'We do not have, and will never claim to have, special relationships or influence with any embassy, consulate, or immigration authority.',
+      'We tell you exactly where you stand and what to expect — no exaggerated claims, no false promises about pull or connections. Just clear, expert guidance from people who know the process.',
   },
   {
-    title: 'We flag scams, even at our own cost',
+    title: 'We protect you from scams',
     description:
-      'If we identify a fraudulent opportunity or agent in the market — even one we could profit from staying quiet about — we will say so publicly.',
+      'If something in this market looks fraudulent — even an opportunity we could profit from staying quiet about — we will call it out. Your safety comes before our sale.',
   },
 ];

@@ -10,7 +10,7 @@ values there and every page on the site updates automatically.
       code first, no `+` or spaces (e.g. `233241234567`)
 - [ ] `contact.email` — real business email
 - [ ] `contact.address.line1` — street address / building name in Kasoa
-- [ ] `contact.hours` — confirm real office hours
+- [ ] `contact.officeHours` — confirm real office visiting hours
 - [ ] `social.*` — real Facebook / Instagram / LinkedIn / TikTok URLs (or
       remove the ones that don't apply in `src/components/Footer.astro`)
 
@@ -32,6 +32,24 @@ values there and every page on the site updates automatically.
 - `contact.astro` currently offers WhatsApp + email only ("a booking/enquiry
   form is planned for a future update"). See "Adding a contact form later"
   in `README.md` for how to wire one up without restructuring the page.
+- **Money-back / refund guarantee**: not yet on the site. Before this can be
+  published as a stated policy (e.g. on `our-promise.astro` or a service
+  page), we need the exact terms in writing: what gets refunded if a service
+  doesn't succeed — government/embassy fees, our service fee, or both — any
+  percentage kept, the conditions that trigger it, and the timeline. This is
+  a binding commercial commitment once it's on the site, so it should say
+  exactly what the business will actually honor.
+- **Homepage video** (`src/components/VideoSpotlight.astro`): currently
+  shows a "Video coming soon" placeholder. Once you have a short intro
+  video, upload it to YouTube (unlisted is fine) and pass its video ID —
+  the part after `v=` in the URL — as the `youtubeId` prop where
+  `<VideoSpotlight />` is used in `src/pages/index.astro`. It'll swap in a
+  click-to-play thumbnail automatically.
+- **Service page visuals** (`src/components/ServiceVisual.astro`): each
+  service page has an icon-based visual band in place of real photography,
+  since none was supplied. Swap in real photos of the office, team, or
+  client documents (with permission) when available for a more personal
+  feel — this component is the one place per service page to replace.
 
 ## Not required before launch, but worth knowing
 

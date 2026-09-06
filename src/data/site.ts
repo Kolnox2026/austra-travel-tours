@@ -23,10 +23,13 @@ export const site = {
       line1: '[Street Address / Building Name]',
       line2: 'Kasoa, Central Region, Ghana',
     },
-    hours: [
+    // WhatsApp is monitored every day — this is what we lead with.
+    messagingAvailability: 'Message us anytime — every day of the week',
+    // Physical office visiting hours — a secondary detail, shown on the Contact page only.
+    officeHours: [
       { days: 'Monday – Friday', time: '8:00 AM – 6:00 PM' },
       { days: 'Saturday', time: '9:00 AM – 3:00 PM' },
-      { days: 'Sunday', time: 'Closed' },
+      { days: 'Sunday', time: 'By appointment' },
     ],
   },
 

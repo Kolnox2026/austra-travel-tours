@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import type { Service } from '../data/services';
+
+export interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+// Two supporting icons shown alongside the service's main icon — gives each
+// service page some visual texture until real photos/video are available.
+const supportIcons: Record<Service['icon'], ['check-circle' | 'document-check' | 'clock' | 'badge' | 'map-pin', 'check-circle' | 'document-check' | 'clock' | 'badge' | 'map-pin']> = {
+  plane: ['map-pin', 'check-circle'],
+  graduation: ['document-check', 'check-circle'],
+  shield: ['document-check', 'badge'],
+  briefcase: ['clock', 'check-circle'],
+  passport: ['document-check', 'badge'],
+  globe: ['badge', 'check-circle'],
+};
+
+const [iconA, iconB] = supportIcons[service.icon];
+---
+
+<div class="relative overflow-hidden bg-navy-800 py-14">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.06]"
+    style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 28px 28px;"
+  >
+  </div>
+  <div class="pointer-events-none absolute -left-16 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-gold-500/10 blur-3xl"></div>
+
+  <div class="container-content relative flex items-center justify-center gap-6 sm:gap-10">
+    <span class="flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-gold-400/70 ring-1 ring-white/10 sm:h-20 sm:w-20">
+      <Icon name={iconA} class="h-7 w-7 sm:h-8 sm:w-8" />
+    </span>
+    <span class="flex h-24 w-24 items-center justify-center rounded-full bg-gold-500 text-navy-900 shadow-card-hover sm:h-28 sm:w-28">
+      <Icon name={service.icon} class="h-10 w-10 sm:h-12 sm:w-12" />
+    </span>
+    <span class="flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-gold-400/70 ring-1 ring-white/10 sm:h-20 sm:w-20">
+      <Icon name={iconB} class="h-7 w-7 sm:h-8 sm:w-8" />
+    </span>
+  </div>
+</div>
