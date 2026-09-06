@@ -7,7 +7,6 @@ export type Service = {
   metaDescription: string;
   summary: string;
   features: string[];
-  comingSoon?: boolean;
 };
 
 export const services: Service[] = [
@@ -83,25 +82,21 @@ export const services: Service[] = [
       'Itinerary planning around event schedules',
     ],
   },
+  {
+    slug: 'work-abroad',
+    name: 'International Employment Mobility',
+    shortName: 'Work Abroad',
+    icon: 'globe',
+    tagline: 'Verified overseas employers, checked before any role reaches you.',
+    metaDescription:
+      'International employment mobility from AUSTRA TRAVEL & TOURS — verified overseas employer placements for qualified candidates.',
+    summary:
+      'We connect qualified candidates with overseas employers on the same verification framework that governs the rest of our work — every employer is checked before a role is ever presented to you.',
+    features: [
+      'Employer verification before any role is advertised',
+      'Transparent, written fee disclosure — no exceptions',
+      'No candidate will be asked to pay an unexplained "processing fee"',
+      'Support from offer through documentation and relocation',
+    ],
+  },
 ];
-
-export const comingSoonService: Service = {
-  slug: 'work-abroad',
-  name: 'International Employment Mobility',
-  shortName: 'Work Abroad',
-  icon: 'globe',
-  tagline: 'Verified international job placement — launching pending licensing.',
-  metaDescription:
-    'International employment mobility from AUSTRA TRAVEL & TOURS is coming soon, pending licensing. Join the interest list to be notified at launch.',
-  summary:
-    'We are building an international job placement service on the same verification framework that governs the rest of our work — every employer checked before it reaches a candidate. This service is not yet live and will only launch once the required licensing is in place.',
-  features: [
-    'Employer verification before any role is advertised',
-    'Transparent, written fee disclosure — no exceptions',
-    'No candidate will be asked to pay an unexplained "processing fee"',
-    'Full compliance with Ghanaian labour migration licensing requirements',
-  ],
-  comingSoon: true,
-};
-
-export const allServices: Service[] = [...services, comingSoonService];

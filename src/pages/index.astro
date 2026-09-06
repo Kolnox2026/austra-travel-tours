@@ -9,7 +9,7 @@ import CTASection from '../components/CTASection.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import Icon from '../components/Icon.astro';
 import { site, defaultWhatsappMessage } from '../data/site';
-import { allServices } from '../data/services';
+import { services } from '../data/services';
 import { ourPromise } from '../data/promise';
 ---
 
@@ -67,7 +67,7 @@ import { ourPromise } from '../data/promise';
         subtitle="From a single flight ticket to a scholarship application, each service below is delivered against the same verification and disclosure standard."
       />
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {allServices.map((service) => <ServiceCard service={service} />)}
+        {services.map((service) => <ServiceCard service={service} />)}
       </div>
     </div>
   </section>

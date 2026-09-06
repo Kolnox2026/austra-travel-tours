@@ -28,7 +28,7 @@ src/
   data/            # single source of truth for all site copy
     site.ts        # contact details, tagline, mission/vision — see PLACEHOLDERS.md
     nav.ts         # header/footer navigation
-    services.ts    # the 5 live services + the "coming soon" service
+    services.ts    # all 6 live services
     values.ts      # core values
     promise.ts     # "Our Promise" commitments
     verification.ts# the verification framework's steps + statuses
@@ -56,7 +56,7 @@ the presentation layer.
 | Study Abroad | `/study-abroad/` |
 | Visa Support (incl. Passport & Travel Document Assistance) | `/visa-support/` |
 | Conferences & Business Travel | `/conferences-business-travel/` |
-| Work Abroad (coming soon) | `/work-abroad/` |
+| Work Abroad | `/work-abroad/` |
 | Our Promise / Trust & Compliance | `/our-promise/` |
 | About Us | `/about/` |
 | Contact | `/contact/` |
