@@ -10,14 +10,14 @@ export const site = {
   vision: "To become Africa's most trusted gateway to global mobility and opportunity.",
   description:
     'AUSTRA TRAVEL & TOURS is a Ghana-based international mobility and travel company connecting Ghanaians and residents of Ghana to verified travel, education, and visa opportunities.',
-  url: 'https://www.austratravelandtours.com',
+  url: 'https://austratravelandtours.com',
 
   // --- Placeholder contact details — replace before launch ---
   contact: {
-    phoneDisplay: '+233 [XX] [XXX] [XXXX]',
-    phoneHref: 'tel:+233000000000',
-    whatsappDisplay: '+233 [XX] [XXX] [XXXX]',
-    whatsappNumber: '233000000000', // digits only, no +, for wa.me links
+    phoneDisplay: '+233 55 229 1068',
+    phoneHref: 'tel:+233552291068',
+    whatsappDisplay: '+233 55 229 1068',
+    whatsappNumber: '233552291068', // digits only, no +, for wa.me links
     email: 'info@austratravelandtours.com',
     address: {
       line1: '[Street Address / Building Name]',

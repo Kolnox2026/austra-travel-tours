@@ -5,10 +5,9 @@ values there and every page on the site updates automatically.
 
 ## Must replace before going live
 
-- [ ] `contact.phoneDisplay` / `contact.phoneHref` — real phone number
-- [ ] `contact.whatsappNumber` — real WhatsApp number, digits only, country
-      code first, no `+` or spaces (e.g. `233241234567`)
-- [ ] `contact.email` — real business email
+- [x] `contact.phoneDisplay` / `contact.phoneHref` — +233 55 229 1068
+- [x] `contact.whatsappNumber` — 233552291068 (same number, used for both)
+- [ ] `contact.email` — confirm `info@austratravelandtours.com` is correct, or give the real one
 - [ ] `contact.address.line1` — street address / building name in Kasoa
 - [ ] `contact.officeHours` — confirm real office visiting hours
 - [ ] `social.*` — real Facebook / Instagram / LinkedIn / TikTok URLs (or
