@@ -1,0 +1,31 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { journeySteps } from '../data/journey';
+---
+
+<section class="section">
+  <div class="container-content">
+    <SectionHeading
+      eyebrow="The process"
+      title="How it works"
+      subtitle="A straightforward path from first conversation to the outcome you came for."
+    />
+
+    <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+      {
+        journeySteps.map((step, i) => (
+          <div class="relative">
+            {i < journeySteps.length - 1 && (
+              <div class="pointer-events-none absolute left-6 top-6 hidden h-px w-full bg-navy-100 lg:block" />
+            )}
+            <div class="relative flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold-500 bg-cream font-display text-lg font-bold text-gold-600">
+              {step.step}
+            </div>
+            <h3 class="mt-4 text-base font-bold text-navy-900">{step.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-navy-600">{step.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

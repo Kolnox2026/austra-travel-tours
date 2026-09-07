@@ -50,6 +50,15 @@ values there and every page on the site updates automatically.
   since none was supplied. Swap in real photos of the office, team, or
   client documents (with permission) when available for a more personal
   feel — this component is the one place per service page to replace.
+- **Testimonials** (`src/data/testimonials.ts`): currently empty, so the
+  homepage shows a "Client stories coming soon" placeholder instead of fake
+  quotes. You mentioned real clients who'd vouch for the business (Nana,
+  Isaac Saki, Jessica, and others) — for each one we need: (1) their exact
+  words, not a paraphrase — a quote attributed to a named person has to be
+  what they actually said, and (2) their OK to publish their full name
+  alongside it on a public website. Once you have both for a few clients,
+  add them to the `testimonials` array (`name`, `quote`, optional
+  `service`) and they'll render automatically.
 
 ## Not required before launch, but worth knowing
 
