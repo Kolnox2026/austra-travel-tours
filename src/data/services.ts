@@ -53,11 +53,12 @@ export const services: Service[] = [
     icon: 'shield',
     tagline: 'Your visa application, prepared and submitted the right way.',
     metaDescription:
-      'Visa, immigration, passport, and travel document support from AUSTRA TRAVEL & TOURS in Kasoa, Ghana — done right, the first time.',
+      'Visa, immigration, work permit, passport, and travel document support from AUSTRA TRAVEL & TOURS in Kasoa, Ghana — for Ghanaians travelling out and foreigners relocating in.',
     summary:
-      'We handle your visa application from start to finish — the forms, the supporting documents, the appointment, every detail that trips people up. Our clients go in prepared, not guessing.',
+      'We handle your visa or work permit application from start to finish — the forms, the supporting documents, the appointment, every detail that trips people up. Whether you\'re a Ghanaian travelling abroad or a foreign national relocating to Ghana, our clients go in prepared, not guessing.',
     features: [
       'Visa application form guidance',
+      'Work permit assistance for foreigners relocating to work in Ghana',
       'Supporting document checklists and review',
       'Appointment scheduling assistance',
       'Passport application and renewal assistance',
