@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import WhatsAppButton from './WhatsAppButton.astro';
-import { primaryNav } from '../data/nav';
+import { primaryNav, serviceLinks } from '../data/nav';
 import { site } from '../data/site';
 
 const currentPath = Astro.url.pathname;
@@ -10,6 +10,9 @@ function isActive(href: string) {
   if (href === '/') return currentPath === '/';
   return currentPath.startsWith(href);
 }
+
+const isServicesActive = serviceLinks.some((link) => isActive(link.href));
+const [home, ...restNav] = primaryNav;
 ---
 
 <header class="sticky top-0 z-30 border-b border-navy-100 bg-cream/95 backdrop-blur">
@@ -22,23 +25,60 @@ function isActive(href: string) {
     </a>
 
     <nav class="hidden items-center gap-1 xl:flex" aria-label="Primary">
+      <a
+        href={home.href}
+        class:list={[
+          'relative rounded-full px-3 py-2 text-sm font-medium transition-colors',
+          isActive(home.href) ? 'text-navy-900 font-semibold' : 'text-navy-600 hover:text-navy-900',
+        ]}
+      >
+        {home.label}
+      </a>
+
+      <div class="relative">
+        <button
+          id="services-dropdown-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="services-dropdown-panel"
+          class:list={[
+            'flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors',
+            isServicesActive ? 'text-navy-900 font-semibold' : 'text-navy-600 hover:text-navy-900',
+          ]}
+        >
+          Services
+          <Icon name="chevron-down" class="h-4 w-4 transition-transform" />
+        </button>
+        <div
+          id="services-dropdown-panel"
+          class="absolute left-0 top-full z-40 mt-2 hidden w-64 overflow-hidden rounded-2xl bg-white py-2 shadow-card-hover ring-1 ring-navy-100"
+        >
+          {
+            serviceLinks.map((link) => (
+              <a
+                href={link.href}
+                class:list={[
+                  'block px-4 py-2.5 text-sm font-medium transition-colors',
+                  isActive(link.href) ? 'bg-navy-50 text-navy-900' : 'text-navy-700 hover:bg-navy-50',
+                ]}
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
       {
-        primaryNav.map((link) => (
+        restNav.map((link) => (
           <a
             href={link.href}
             class:list={[
               'relative rounded-full px-3 py-2 text-sm font-medium transition-colors',
-              isActive(link.href)
-                ? 'text-navy-900 font-semibold'
-                : 'text-navy-600 hover:text-navy-900',
+              isActive(link.href) ? 'text-navy-900 font-semibold' : 'text-navy-600 hover:text-navy-900',
             ]}
           >
             {link.label}
-            {link.badge && (
-              <span class="ml-1 rounded-full bg-gold-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gold-700">
-                {link.badge}
-              </span>
-            )}
           </a>
         ))
       }
@@ -70,8 +110,45 @@ function isActive(href: string) {
     class="hidden flex-col gap-1 border-t border-navy-100 bg-cream px-5 py-4 xl:hidden"
     aria-label="Mobile"
   >
+    <a
+      href={home.href}
+      class:list={[
+        'flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium',
+        isActive(home.href) ? 'bg-navy-50 text-navy-900 font-semibold' : 'text-navy-700',
+      ]}
+    >
+      {home.label}
+    </a>
+
+    <details class="mobile-services-details group" open={isServicesActive}>
+      <summary
+        class:list={[
+          'flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3 text-base font-medium',
+          isServicesActive ? 'bg-navy-50 text-navy-900 font-semibold' : 'text-navy-700',
+        ]}
+      >
+        Services
+        <Icon name="chevron-down" class="mobile-services-icon h-4 w-4 transition-transform" />
+      </summary>
+      <div class="flex flex-col gap-1 py-1 pl-4">
+        {
+          serviceLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                'rounded-lg px-3 py-2.5 text-sm font-medium',
+                isActive(link.href) ? 'text-navy-900 font-semibold' : 'text-navy-600',
+              ]}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </details>
+
     {
-      primaryNav.map((link) => (
+      restNav.map((link) => (
         <a
           href={link.href}
           class:list={[
@@ -80,14 +157,10 @@ function isActive(href: string) {
           ]}
         >
           <span>{link.label}</span>
-          {link.badge && (
-            <span class="rounded-full bg-gold-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gold-700">
-              {link.badge}
-            </span>
-          )}
         </a>
       ))
     }
+
     <div class="mt-2">
       <WhatsAppButton
         message={`Hello ${site.name}, I'd like to enquire about your services.`}
@@ -99,6 +172,18 @@ function isActive(href: string) {
   </nav>
 </header>
 
+<style>
+  .mobile-services-details[open] .mobile-services-icon {
+    transform: rotate(180deg);
+  }
+  .mobile-services-details summary::-webkit-details-marker {
+    display: none;
+  }
+  #services-dropdown-toggle[aria-expanded='true'] svg {
+    transform: rotate(180deg);
+  }
+</style>
+
 <script>
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
@@ -108,5 +193,32 @@ function isActive(href: string) {
     menu?.classList.toggle('hidden');
     menu?.classList.toggle('flex');
     toggle.setAttribute('aria-expanded', String(Boolean(isHidden)));
+  });
+
+  const servicesToggle = document.getElementById('services-dropdown-toggle');
+  const servicesPanel = document.getElementById('services-dropdown-panel');
+
+  function closeServicesDropdown() {
+    servicesPanel?.classList.add('hidden');
+    servicesToggle?.setAttribute('aria-expanded', 'false');
+  }
+
+  servicesToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isHidden = servicesPanel?.classList.contains('hidden');
+    servicesPanel?.classList.toggle('hidden');
+    servicesToggle.setAttribute('aria-expanded', String(Boolean(isHidden)));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (servicesPanel && !servicesPanel.classList.contains('hidden')) {
+      if (!servicesPanel.contains(e.target as Node) && e.target !== servicesToggle) {
+        closeServicesDropdown();
+      }
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeServicesDropdown();
   });
 </script>

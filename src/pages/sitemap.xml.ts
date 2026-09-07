@@ -1,9 +1,10 @@
 import type { APIRoute } from 'astro';
 import { site } from '../data/site';
-import { primaryNav } from '../data/nav';
+import { primaryNav, serviceLinks } from '../data/nav';
 
 export const GET: APIRoute = () => {
-  const entries = primaryNav
+  const allPages = [...primaryNav, ...serviceLinks];
+  const entries = allPages
     .map((link) => `  <url>\n    <loc>${new URL(link.href, site.url).toString()}</loc>\n  </url>`)
     .join('\n');
 
