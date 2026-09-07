@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { site, defaultWhatsappMessage } from '../data/site';
+import { services } from '../data/services';
 ---
 
 <BaseLayout
@@ -86,32 +87,131 @@ import { site, defaultWhatsappMessage } from '../data/site';
         </div>
       </div>
 
-      <div class="card flex flex-col justify-between p-8">
-        <div>
-          <h2 class="text-xl font-bold text-navy-900">Prefer email?</h2>
-          <p class="mt-3 text-sm leading-relaxed text-navy-600">
-            Send us a short message about what you're looking for — travel, study, visa support, or a business trip —
-            and we'll reply with next steps.
-          </p>
-        </div>
-        <a
-          href={`mailto:${site.contact.email}?subject=${encodeURIComponent('Enquiry from website')}`}
-          class="btn-secondary mt-6 w-full"
-        >
-          <Icon name="mail" class="h-5 w-5" />
-          Email Us
-        </a>
-        <p class="mt-3 text-center text-sm text-navy-500">
-          Button not opening your mail app? Just email us directly at
-          <a href={`mailto:${site.contact.email}`} class="font-semibold text-navy-700 underline underline-offset-2">
-            {site.contact.email}
-          </a>
+      <div class="card p-8">
+        <h2 class="text-xl font-bold text-navy-900">Send us a message</h2>
+        <p class="mt-3 text-sm leading-relaxed text-navy-600">
+          Fill this in and it comes straight to us — no need to open your own mail app.
         </p>
+
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/thank-you/"
+          id="contact-form"
+          class="mt-6 space-y-4"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden">
+            <label>
+              Don't fill this out if you're human: <input name="bot-field" />
+            </label>
+          </p>
+
+          <div>
+            <label for="name" class="block text-sm font-semibold text-navy-800">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              class="mt-1.5 w-full rounded-lg border border-navy-200 px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-navy-300"
+              placeholder="Your full name"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-semibold text-navy-800">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              class="mt-1.5 w-full rounded-lg border border-navy-200 px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-navy-300"
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-semibold text-navy-800">Phone (optional)</label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              class="mt-1.5 w-full rounded-lg border border-navy-200 px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-navy-300"
+              placeholder="+233 ..."
+            />
+          </div>
+
+          <div>
+            <label for="service" class="block text-sm font-semibold text-navy-800">What do you need help with?</label>
+            <select
+              name="service"
+              id="service"
+              class="mt-1.5 w-full rounded-lg border border-navy-200 bg-white px-3.5 py-2.5 text-sm text-navy-900"
+            >
+              <option value="">Select a service</option>
+              {services.map((s) => <option value={s.name}>{s.name}</option>)}
+              <option value="Other">Other / Not sure yet</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-semibold text-navy-800">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              required
+              rows="4"
+              class="mt-1.5 w-full rounded-lg border border-navy-200 px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-navy-300"
+              placeholder="Tell us what you're looking for..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary w-full">Send Message</button>
+        </form>
+
+        <div id="contact-success" class="hidden rounded-lg bg-verified/10 p-4 text-center text-sm font-semibold text-verified">
+          Thanks — your message is in. We'll reply as soon as we can.
+        </div>
+        <div id="contact-error" class="hidden rounded-lg bg-rejected/10 p-4 text-center text-sm font-semibold text-rejected">
+          Something went wrong sending that. Please try WhatsApp or email us directly at {site.contact.email}.
+        </div>
+
         <p class="mt-4 text-xs text-navy-400">
-          Prefer a form? A booking/enquiry form is planned for a future update — WhatsApp and email remain the
-          fastest ways to reach us in the meantime.
+          Prefer not to fill in a form? WhatsApp and email both work too —
+          <a href={`mailto:${site.contact.email}`} class="underline underline-offset-2">{site.contact.email}</a>.
         </p>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successBox = document.getElementById('contact-success');
+  const errorBox = document.getElementById('contact-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox?.classList.add('hidden');
+
+    const formData = new FormData(form);
+    const body = new URLSearchParams();
+    formData.forEach((value, key) => body.append(key, value.toString()));
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      });
+      if (!response.ok) throw new Error('Form submission failed');
+      form.hidden = true;
+      successBox?.classList.remove('hidden');
+    } catch (err) {
+      errorBox?.classList.remove('hidden');
+    }
+  });
+</script>

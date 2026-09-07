@@ -28,9 +28,15 @@ values there and every page on the site updates automatically.
   misleading marketing claims. Add them to `TrustBar.astro` / `about.astro`
   once you have real figures — the competitor benchmark (Secure Travel and
   Tours) uses exactly this kind of stat effectively.
-- `contact.astro` currently offers WhatsApp + email only ("a booking/enquiry
-  form is planned for a future update"). See "Adding a contact form later"
-  in `README.md` for how to wire one up without restructuring the page.
+- **Contact form is live** (Netlify Forms) — but you need to turn on email
+  notifications so submissions actually reach you: in Netlify, go to
+  **Project configuration → Forms → Form notifications → Add notification →
+  Email notification**, and enter the address that should receive them.
+  Without this step, submissions only show up if someone manually checks
+  the Forms tab in the Netlify dashboard.
+  After the next deploy, also check the **Forms** tab in Netlify to confirm
+  it detected a form named "contact" — it's auto-detected from the page's
+  HTML, but worth a quick check the first time.
 - **Money-back / refund guarantee**: not yet on the site. Before this can be
   published as a stated policy (e.g. on `our-promise.astro` or a service
   page), we need the exact terms in writing: what gets refunded if a service

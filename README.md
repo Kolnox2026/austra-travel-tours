@@ -81,19 +81,20 @@ not a footnote. It renders from `src/data/verification.ts`:
 `VerificationBadge.astro` is the reusable status pill (green/gold/red) —
 reuse it anywhere a real partner or listing needs a status shown.
 
-## Adding a contact form later
+## Contact form
 
-The Contact page currently offers WhatsApp and `mailto:` only (no backend
-exists yet, per the brief). To add a real form later without restructuring:
+The Contact page has a working form (Name, Email, Phone, Service, Message)
+powered by [Netlify Forms](https://docs.netlify.com/manage/forms/setup/) —
+no backend of our own needed. It submits via `fetch()` so the page doesn't
+reload, with `src/pages/thank-you.astro` as a fallback if JavaScript is
+unavailable.
 
-1. Add a `<form>` in `src/pages/contact.astro` inside the second card (where
-   the "planned for a future update" note currently sits).
-2. Point its `action` at whatever you choose then (a form endpoint service,
-   or an Astro API route if you add server rendering — `output: 'server'`
-   or a hybrid route in `astro.config.mjs`).
-
-No other page or component depends on Contact's internals, so this is an
-isolated change.
+Netlify detects the form automatically from the HTML at deploy time (it
+looks for `data-netlify="true"` on a `<form>`), so nothing extra to
+configure there. What *does* need a one-time setup in the Netlify
+dashboard: turning on email notifications for new submissions — see
+`PLACEHOLDERS.md` for the exact steps. Submissions are also always
+viewable in Netlify under the project's **Forms** tab regardless.
 
 ## Deployment
 
