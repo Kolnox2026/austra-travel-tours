@@ -8,7 +8,7 @@ values there and every page on the site updates automatically.
 - [x] `contact.phoneDisplay` / `contact.phoneHref` — +233 55 229 1068
 - [x] `contact.whatsappNumber` — 233552291068 (same number, used for both)
 - [ ] `contact.email` — confirm `info@austratravelandtours.com` is correct, or give the real one
-- [ ] `contact.address.line1` — street address / building name in Kasoa
+- [x] `contact.address` — Millennium City, Kasoa, Accra, Ghana
 - [ ] `contact.officeHours` — confirm real office visiting hours
 - [ ] `social.*` — real Facebook / Instagram / LinkedIn / TikTok URLs (or
       remove the ones that don't apply in `src/components/Footer.astro`)

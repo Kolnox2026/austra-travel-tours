@@ -20,8 +20,8 @@ export const site = {
     whatsappNumber: '233552291068', // digits only, no +, for wa.me links
     email: 'info@austratravelandtours.com',
     address: {
-      line1: '[Street Address / Building Name]',
-      line2: 'Kasoa, Central Region, Ghana',
+      line1: 'Millennium City',
+      line2: 'Kasoa, Accra, Ghana',
     },
     // WhatsApp is monitored every day — this is what we lead with.
     messagingAvailability: 'Message us anytime — every day of the week',
