@@ -17,7 +17,7 @@ export const services: Service[] = [
     icon: 'plane',
     tagline: 'Flights, hotels, tours, and transfers — booked right, priced honestly.',
     metaDescription:
-      'Flight ticketing, hotel bookings, tour packages, and airport transfers from AUSTRA TRAVEL & TOURS, based in Kasoa, Ghana.',
+      'Flight ticketing, hotel bookings, tour packages, and airport transfers from AUSTRA TRAVEL & TOURS, based near Accra, Ghana.',
     summary:
       'From a single flight ticket to a fully planned holiday, we take care of the details so you can enjoy the trip. Verified suppliers, competitive prices, and a team that answers when you call.',
     features: [
@@ -53,7 +53,7 @@ export const services: Service[] = [
     icon: 'shield',
     tagline: 'Your visa application, prepared and submitted the right way.',
     metaDescription:
-      'Visa, immigration, work permit, passport, and travel document support from AUSTRA TRAVEL & TOURS in Kasoa, Ghana — for Ghanaians travelling out and foreigners relocating in.',
+      'Visa, immigration, work permit, passport, and travel document support from AUSTRA TRAVEL & TOURS near Accra, Ghana — for Ghanaians travelling out and foreigners relocating in.',
     summary:
       'We handle your visa or work permit application from start to finish — the forms, the supporting documents, the appointment, every detail that trips people up. Whether you\'re a Ghanaian travelling abroad or a foreign national relocating to Ghana, our clients go in prepared, not guessing.',
     features: [
