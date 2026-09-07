@@ -101,6 +101,12 @@ import { site, defaultWhatsappMessage } from '../data/site';
           <Icon name="mail" class="h-5 w-5" />
           Email Us
         </a>
+        <p class="mt-3 text-center text-sm text-navy-500">
+          Button not opening your mail app? Just email us directly at
+          <a href={`mailto:${site.contact.email}`} class="font-semibold text-navy-700 underline underline-offset-2">
+            {site.contact.email}
+          </a>
+        </p>
         <p class="mt-4 text-xs text-navy-400">
           Prefer a form? A booking/enquiry form is planned for a future update — WhatsApp and email remain the
           fastest ways to reach us in the meantime.
